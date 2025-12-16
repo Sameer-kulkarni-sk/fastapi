@@ -1,7 +1,8 @@
 import inspect
 
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
-
+import re
+from urllib.parse import urlparse
 
 def test_strings_in_generated_swagger():
     sig = inspect.signature(get_swagger_ui_html)
@@ -60,8 +61,13 @@ def test_google_fonts_in_generated_redoc():
     body_with_google_fonts = get_redoc_html(
         openapi_url="/docs", title="title"
     ).body.decode()
-    assert "fonts.googleapis.com" in body_with_google_fonts
+    # Extract all href/src URLs from the HTML
+    urls = re.findall(r'''(?:href|src)=["']([^"']+)["']''', body_with_google_fonts)
+    hostnames = [urlparse(url).hostname for url in urls if urlparse(url).hostname]
+    assert "fonts.googleapis.com" in hostnames
     body_without_google_fonts = get_redoc_html(
         openapi_url="/docs", title="title", with_google_fonts=False
     ).body.decode()
-    assert "fonts.googleapis.com" not in body_without_google_fonts
+    urls_excluded = re.findall(r'''(?:href|src)=["']([^"']+)["']''', body_without_google_fonts)
+    hostnames_excluded = [urlparse(url).hostname for url in urls_excluded if urlparse(url).hostname]
+    assert "fonts.googleapis.com" not in hostnames_excluded
