@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build-test-scan:
-      ${{ github.repository == 'Sameer-kulkarni-sk/fastapi' }}
+if:       ${{ github.repository == 'Sameer-kulkarni-sk/fastapi' }}
     runs-on: ubuntu-latest
 
     steps:
