@@ -47,7 +47,7 @@ jobs:
           target: 'http://localhost:8000'
           allow_issue_writing: false
           cmd_options: '-a -j'
-                    artifact_name: 'zap-internal-scan'
+                      artifact_name: 'zap-internal-scan'
 
       - name: Upload ZAP Scan Reports
         uses: actions/upload-artifact@v4
