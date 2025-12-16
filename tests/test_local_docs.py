@@ -64,7 +64,7 @@ def test_google_fonts_in_generated_redoc():
     # Extract all href/src URLs from the HTML
     urls = re.findall(r'''(?:href|src)=["']([^"']+)["']''', body_with_google_fonts)
     hostnames = [urlparse(url).hostname for url in urls if urlparse(url).hostname]
-    assert "fonts.googleapis.com" in hostnames
+    assert any(host == "fonts.googleapis.com" for host in hostnames)
     body_without_google_fonts = get_redoc_html(
         openapi_url="/docs", title="title", with_google_fonts=False
     ).body.decode()
