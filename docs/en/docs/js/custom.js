@@ -122,7 +122,7 @@ function shuffle(array) {
 async function showRandomAnnouncement(groupId, timeInterval) {
     const announceFastAPI = document.getElementById(groupId);
     if (announceFastAPI) {
-        let children = [].slice.call(announceFastAPI.children);
+        let children = Array.from(announceFastAPI.children); // error corrected : array changed to Array.from
         children = shuffle(children)
         let index = 0
         const announceRandom = () => {
