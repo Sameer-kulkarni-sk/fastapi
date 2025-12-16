@@ -1,5 +1,8 @@
 name: Test Redistribute
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
