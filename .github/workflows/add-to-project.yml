@@ -9,6 +9,7 @@ on:
 
 jobs:
   add-to-project:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI
     name: Add to project
     runs-on: ubuntu-latest
     steps:
