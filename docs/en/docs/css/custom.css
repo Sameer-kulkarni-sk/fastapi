@@ -8,11 +8,15 @@
     --md-code-font: "Fira Code", monospace, "Noto Color Emoji";
 }
 
-/* Override default regular font in Material for MkDocs to include Noto Color Emoji */
+/* Override default regular font in Material for MkDocs to include Noto Color Emoji */ /* error corrected : root seletor added */
 :root {
-    --md-text-font: "Roboto", "Noto Color Emoji";
-}
+  /* Existing variables */
+  --md-primary-fg-color: #EF5552;
 
+  /* Your new Font overrides */
+  --md-text-font: "Roboto", "Noto Color Emoji", sans-serif;
+  --md-code-font: "Roboto Mono", "Noto Color Emoji", monospace;
+}
 .termynal-comment {
   color: #4a968f;
   font-style: italic;
