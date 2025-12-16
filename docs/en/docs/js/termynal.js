@@ -65,7 +65,7 @@ class Termynal {
         const restart = this.generateRestart()
         restart.style.visibility = 'hidden'
         this.container.appendChild(restart)
-        this.container.setAttribute('data-termynal', '');
+        this.container.dataset.termynal = ''; //  error corrected : Prefer `.dataset` over `setAttribute(…)`.
     }
 
     /**
