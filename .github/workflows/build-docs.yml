@@ -13,6 +13,7 @@ env:
 
 jobs:
   changes:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI
     runs-on: ubuntu-latest
     # Required permissions
     permissions:
@@ -111,7 +112,8 @@ jobs:
           include-hidden-files: true
 
   # https://github.com/marketplace/actions/alls-green#why
-  docs-all-green:  # This job does nothing and is only used for the branch protection
+  docs-all-green:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI# This job does nothing and is only used for the branch protection
     if: always()
     needs:
       - build-docs

@@ -11,6 +11,7 @@ env:
 
 jobs:
   pre-commit:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context

@@ -20,6 +20,7 @@ env:
 
 jobs:
   job:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI
     runs-on: ubuntu-latest
     permissions:
       discussions: write
@@ -54,6 +55,7 @@ jobs:
       - name: Notify Translations
         run: python ./scripts/notify_translations.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
+              if: false  # Disabled - Only showing DAST and DevSecOps CIGITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUMBER: ${{ github.event.inputs.number || null }}
           DEBUG: ${{ github.event.inputs.debug_enabled || 'false' }}

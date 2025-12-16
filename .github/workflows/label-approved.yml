@@ -13,6 +13,7 @@ env:
 
 jobs:
   label-approved:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI
     if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:

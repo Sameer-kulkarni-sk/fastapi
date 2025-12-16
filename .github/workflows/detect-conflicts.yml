@@ -6,6 +6,7 @@ on:
 
 jobs:
   main:
+      if: false  # Disabled - Only showing DAST and DevSecOps CI
     permissions:
       contents: read
       pull-requests: write
