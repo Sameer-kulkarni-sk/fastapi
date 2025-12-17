@@ -45,19 +45,15 @@ jobs:
         with:
           target: 'http://localhost:8000'
           allow_issue_writing: false
-          cmd_options: >
-            -a -j
-            -r zap_report.html
-            -w zap_report.md
-            -J zap_report.json
-
+      cmd_options: '-a -j'
       - name: Upload ZAP Scan Reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: zapreport
           path: |
-            zap_report.html
-            zap_report.md
-            zap_report.json
+        report_html.html
+                report_md.md
+                        report_json.json
+
           retention-days: 30
