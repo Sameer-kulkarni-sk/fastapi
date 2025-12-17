@@ -1,10 +1,11 @@
 name: DAST Security Scan
+
 on:
   push:
     branches: ["master"]
   pull_request:
     branches: ["master"]
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:  # Allow manual trigger
 
 permissions:
   contents: read
@@ -39,21 +40,21 @@ jobs:
           # Check if app is running
           curl http://localhost:8000 || echo "App might not be ready"
           sleep 5
-
       - name: Run OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@66042c8e7e24680119199a017e5b0e8603bf4dae
         with:
           target: 'http://localhost:8000'
           allow_issue_writing: false
-      cmd_options: '-a -j'
+          cmd_options: '-a -j'
+          artifact_name: 'zapinternalscan'
+
       - name: Upload ZAP Scan Reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: zapreport
+          name: zap-scan-reports
           path: |
-        report_html.html
-                report_md.md
-                        report_json.json
-
+            report_html.html
+            report_md.md
+            report_json.json
           retention-days: 30
