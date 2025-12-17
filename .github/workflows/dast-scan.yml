@@ -1,11 +1,10 @@
 name: DAST Security Scan
-
 on:
   push:
     branches: ["master"]
   pull_request:
     branches: ["master"]
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch: # Allow manual trigger
 
 permissions:
   contents: read
@@ -46,14 +45,19 @@ jobs:
         with:
           target: 'http://localhost:8000'
           allow_issue_writing: false
-          cmd_options: '-a -j'
+          cmd_options: >
+            -a -j
+            -r zap_report.html
+            -w zap_report.md
+            -J zap_report.json
+
       - name: Upload ZAP Scan Reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: zap-scan-reports
+          name: zapreport
           path: |
-            report_html.html
-            report_md.md
-            report_json.json
+            zap_report.html
+            zap_report.md
+            zap_report.json
           retention-days: 30
